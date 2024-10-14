@@ -6,10 +6,13 @@ html(lang="en")
         title Chat App 
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
     body 
-        h1 Chat App
-        ul(id="chat")
-        form(id="chat-form")
-            input(type="text", id="message")
+        h1 간단 채팅앱
+        form#nick
+            input(type="text", placeholder="닉네임을 입력해주세요", required)
+            button(type="submit") Save
+        ul#chat-list
+        form#chat
+            input(type="text", placeholder="메시지를 입력해주세요", required)
             button(type="submit") Send
         
         script(src="/public/js/client.js")

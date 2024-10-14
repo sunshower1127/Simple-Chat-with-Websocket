@@ -22,19 +22,27 @@ const sockets = [];
 
 wss.on("connection", (socket) => {
   sockets.push(socket);
+  socket.nickname = "익명";
 
   sockets.forEach((aSocket) => {
-    aSocket.send(`A client just joined`);
+    aSocket.send(`유저가 입장했습니다.`);
   });
 
   socket.on("close", () => {
     console.log("Server socket is closed");
   });
 
-  socket.on("message", (message) => {
-    sockets.forEach((aSocket) => {
-      aSocket.send(message.toString()); // toString 해줘야함
-    });
+  socket.on("message", (_message) => {
+    const message = JSON.parse(_message);
+
+    switch (message.type) {
+      case "message":
+        sockets.forEach((aSocket) => {
+          aSocket.send(`${socket.nickname}: ${message.payload}`);
+        });
+      case "nickname":
+        socket.nickname = message.payload;
+    }
   });
 });
 
