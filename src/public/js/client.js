@@ -1,6 +1,7 @@
-const cloudflared_url = "wss://" + "thirty-voice-mexico-shed.trycloudflare.com";
+const cloudflared_url =
+  "wss://" + "life-taxes-discussions-weeks.trycloudflare.com";
 const local_url = "ws://" + window.location.host;
-const socket = new WebSocket(local_url);
+const socket = new WebSocket(cloudflared_url); // local_url <-> cloudflared_url
 
 const messageList = document.querySelector("#chat-list");
 const chatForm = document.querySelector("#chat");
